@@ -1,4 +1,4 @@
-### `npx create-react-app hello-world`
+### `npx create-react-app client`
 리액트 프로젝트 생성<br>
 
 ### `npm start`
