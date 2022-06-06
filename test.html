@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <style>
+            #sign {
+                position: absolute;
+                top: 77px;
+                left: 519px;
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+        <script>
+       function Export2Word(element, filename = ''){
+            var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'>"
+                + "<title>Export HTML To Doc</title><style> #sign { position: absolute; top: 77px; left: 519px; width: 100px; height: 100px; } </style></head><body>";
+            var postHtml = "</body></html>";
+            var html = preHtml+document.getElementById(element).innerHTML+postHtml;
+            console.log(html);
+
+            var blob = new Blob(['\ufeff', html], {
+                type: 'application/msword'
+            });
+            
+            // Specify link url
+            var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+            // var url = 'data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;charset=utf-8,' + encodeURIComponent(html);
+            
+            // var url = 'data:application/doc;charset=utf-8,' + encodeURIComponent(html);
+            // var url = 'data:application/ms-doc;charset=utf-8,' + encodeURIComponent(html);
+            // var url = 'data:application/msword;charset=utf-8,' + encodeURIComponent(html);
+            // var url = 'data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;charset=utf-8,' + encodeURIComponent(html);
+
+            // Specify file name
+            filename = filename?filename+'.doc':'document.doc';
+            
+            // Create download link element
+            var downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+            
+            if(navigator.msSaveOrOpenBlob ){
+                navigator.msSaveOrOpenBlob(blob, filename);
+            }else{
+                // Create a link to the file
+                downloadLink.href = url;
+                
+                // Setting the file name
+                downloadLink.download = filename;
+                
+                //triggering the function
+                downloadLink.click();
+            }
+            
+            document.body.removeChild(downloadLink);
+        }
+        </script>
+        </head>
+    <body>
+        <div id="exportContent">
+            <span>
+                html to word test..
+            </span>
+            <ul>
+                <li>한글워드 뷰어에서 정상적으로 열리지 않음</li>
+                <li>네이버 오피스에서 정상적으로 열리지 않음</li>
+            </ul>
+            <img src="https://image.shutterstock.com/image-photo/aerial-top-down-view-slalom-600w-741747727.jpg">
+            <hr>
+            <div>
+                <h4>Java용 Spire.Doc</h4>
+                <span>https://www.e-iceblue.com/Introduce/doc-for-java/Live-Demo.html#.Yp2BWHZBxPY</span>
+                <div>
+                    Java용 Spire.Doc 은 Java 응용 프로그램이 Microsoft Word에 의존하지 않고 Word 문서 를 생성 , 변환, 조작 및 인쇄 할 수 있도록 하는 전문 Word API입니다 .
+                    
+                    이 다기능 라이브러리를 사용하여 개발자는 이미지 삽입 , 하이퍼링크 , 전자 서명 , 책갈피 및 워터마크 , 머리글 및 바닥글 설정 , 표 만들기 , 배경 이미지 설정 , 각주 및 미주 추가 와 같은 많은 작업을 손쉽게 처리할 수 있습니다.
+                    
+                    또한 Java용 Spire.Doc은 Word에서 PDF , XPS, Image , EPUB, HTML, TXT, ODT, RTF, WordML, WordXML 등으로의 파일 형식 변환을 지원합니다.
+                </div>
+            </div>
+            <div>
+                <h4>Aspose.Words</h4>
+                <span>https://products.aspose.com/words/java/?gclid=EAIaIQobChMIsZ36_fyX-AIVx1VgCh2_OAGoEAAYASAAEgKHXvD_BwE</span>
+                <div>
+                    Aspose.Words for Java는 Microsoft Word 등에서 지원하는 모든 형식의 파일을 생성, 수정, 변환, 렌더링 및 인쇄할 수 있는 기능이 풍부한 문서 처리 API입니다. Microsoft Word 또는 기타 타사 응용 프로그램에 의존하지 않습니다. 그러나 Aspose.Words for Java는 문서 비교 , 텍스트 찾기 및 바꾸기 , 문서 를 부분으로 분할, 필드 편지 병합 , 페이지 렌더링 , 모든 문서 요소 서식 지정 등 Word가 지원하는 기능을 제공합니다 . 문서에서 Aspose.Words 기능의 전체 목록을 볼 수 있습니다 .
+
+Aspose.Words API는 널리 사용되는 모든 로드 및 저장 형식을 지원합니다. Word 문서를 고정 레이아웃 형식(PDF 또는 XML)으로 저장하거나 변환할 수 있으며 Word 파일을 JPEG, SVG, GIF 등의 인기 있는 이미지 또는 멀티미디어 형식으로 변환할 수 있습니다. 지원되는 형식의 전체 목록을 확인하십시오 .
+                </div>
+            </div>
+            <hr>
+            <div>
+                <h5>요구사항 정의</h5>
+                <ul>
+                    <li>html to doc/docx</li>
+                    <li>이미지로 한번에 문서화 해도 무방한지..?</li>
+                    <li>한글워드 뷰어 혹은 네이터 오피스 등의 타사 프로그램으로 문서를 사용하는지..?</li>
+                </ul>
+            </div>
+            <img src="https://cdn-icons-png.flaticon.com/512/4105/4105448.png" style="width:70px;" id="sign">
+        </div>
+        
+        <input type="button" value="Open table in Excel!" onclick="Export2Word('exportContent', 'word-content')")"/> 
+    </body>
+</html>
